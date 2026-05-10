@@ -136,7 +136,7 @@ if st.button("পরবর্তী ধাপে যান"):
         
         # চ্যাট করে উত্তর দেওয়ার জন্য অপশন
         additional_info = st.text_input("অন্য কোনো কিছু জানাতে চাইলে এখানে লিখুন:")
-        # সেশন স্টেটে কাউন্টার রাখার জন্য
+       # সেশন স্টেটে কাউন্টার রাখার জন্য
 if 'patient_count' not in st.session_state:
     st.session_state.patient_count = 1
 
