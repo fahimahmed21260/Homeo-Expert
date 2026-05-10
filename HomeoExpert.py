@@ -136,12 +136,18 @@ if st.button("পরবর্তী ধাপে যান"):
         
         # চ্যাট করে উত্তর দেওয়ার জন্য অপশন
         additional_info = st.text_input("অন্য কোনো কিছু জানাতে চাইলে এখানে লিখুন:")
-       # সেশন স্টেটে কাউন্টার রাখার জন্য
-if 'patient_count' not in st.session_state:
-    st.session_state.patient_count = 1
 
-# আইডি তৈরির ফরম্যাট
-unique_id = f"SHM-{st.session_state.patient_count:02d}"
+import streamlit as st
+import uuid
+
+# সেশন স্টেটে তথ্য জমা রাখার জন্য
+if 'step' not in st.session_state:
+    st.session_state.step = 1
+if 'patient_id' not in st.session_state:
+    # এখানে একটি র‍্যান্ডম সংখ্যা বা আপনার কাউন্টার লজিক দিতে পারেন
+    # সাময়িকভাবে একটি ইউনিক আইডি তৈরি করছি
+    import random
+    st.session_state.patient_id = f"SHM-{random.randint(1, 99):02d}"
 
 st.sidebar.write("---")
 st.sidebar.info("Shanta Homeo & Modern Health Care v2.0")
