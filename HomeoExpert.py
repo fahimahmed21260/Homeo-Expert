@@ -121,6 +121,21 @@ elif menu == "রোগীর লিস্ট":
         st.download_button("Excel/CSV হিসেবে ডাউনলোড করুন", data=csv, file_name="patient_list.csv", mime="text/csv")
     else:
         st.info("এখনো কোনো রোগী নিবন্ধিত হয়নি।")
+        # ফাইল আপলোড অপশন (অপশনাল)
+uploaded_file = st.file_uploader("রোগীর কোনো পূর্ববর্তী রিপোর্ট থাকলে আপলোড করুন (ঐচ্ছিক)", type=['pdf', 'jpg', 'png'])
+
+# রোগীর প্রধান সমস্যা জানার জন্য
+chief_complaint = st.text_area("আপনার প্রধান সমস্যাগুলো বিস্তারিত লিখুন:")
+
+if st.button("পরবর্তী ধাপে যান"):
+    if chief_complaint:
+        # এখানে Gemini API-কে কল করে লক্ষণভিত্তিক প্রশ্ন তৈরি করতে হবে
+        # উদাহরণস্বরূপ একটি প্রশ্ন এবং অপশন:
+        st.subheader("লক্ষণ সংক্রান্ত কিছু প্রশ্ন:")
+        q1 = st.radio("আপনার ব্যথার ধরণ কেমন?", ["তীব্র", "ধীরে ধীরে বাড়ে", "মাঝে মাঝে হয়"])
+        
+        # চ্যাট করে উত্তর দেওয়ার জন্য অপশন
+        additional_info = st.text_input("অন্য কোনো কিছু জানাতে চাইলে এখানে লিখুন:")
 
 st.sidebar.write("---")
 st.sidebar.info("Shanta Homeo & Modern Health Care v2.0")
