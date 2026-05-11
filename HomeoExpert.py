@@ -7,9 +7,11 @@ import random
 API_KEY = "AIzaSyCiHlaNSDV88cTVEVNWDebtf92f74mNQbo" 
 genai.configure(api_key=API_KEY)
 
-# মডেল ডিক্লেয়ারেশন (সর্বশেষ স্টেবল ভার্সন)
-model = genai.GenerativeModel('gemini-1.5-flash')
-
+# আগের সব মডেল ডিক্লেয়ারেশন মুছে এটি বসান:
+model = genai.GenerativeModel(
+    model_name="gemini-1.5-flash",
+    generation_config={"top_p": 0.95, "top_k": 64, "temperature": 1.0}
+)
 # ২. সেশন স্টেট ম্যানেজমেন্ট
 if 'step' not in st.session_state:
     st.session_state.step = 1
