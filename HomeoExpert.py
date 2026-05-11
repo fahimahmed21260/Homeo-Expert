@@ -6,7 +6,7 @@ from google.generativeai import types
 
 # ১. সঠিক এপিআই কনফিগারেশন (এটি কপি করে বসান)
 # নিশ্চিত করুন আপনার API KEY ঠিক আছে
-API_KEY = "AIzaSyCiHlaNSDV88cTVEVNWDebtf92f74mNQbo" 
+API_KEY = "AIzaSyAV32pSAQ0TW7WCS73uBXzQTNlmNRtr3Xg" 
 genai.configure(api_key=API_KEY)
 
 # আগের সব মডেল ডিক্লেয়ারেশন মুছে এটি বসান:
