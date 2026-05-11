@@ -13,8 +13,11 @@ st.set_page_config(page_title="Shanta Homeo Expert", layout="wide")
 # ২. সেশন স্টেট ম্যানেজমেন্ট (তথ্য ধরে রাখার জন্য)
 if 'step' not in st.session_state:
     st.session_state.step = 1
+if 'patient_count' not in st.session_state:
+    st.session_state.patient_count = 1
+
 if 'patient_id' not in st.session_state:
-    st.session_state.patient_id = f"SHM-{random.randint(1, 99):02d}"
+    st.session_state.patient_id = f"SHM-{st.session_state.patient_count:02d}"
 if 'chat_history' not in st.session_state:
     st.session_state.chat_history = []
 
@@ -98,6 +101,7 @@ elif st.session_state.step == 3:
         st.write(response.text)
         
         if st.button("নতুন রোগী শুরু করুন"):
+            st.session_state.patient_count += 1
             for key in list(st.session_state.keys()):
                 del st.session_state[key]
             st.rerun()
