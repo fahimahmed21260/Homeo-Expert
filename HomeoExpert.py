@@ -2,7 +2,8 @@ import streamlit as st
 import google.generativeai as genai
 
 # ১. এপিআই কনফিগারেশন
-API_KEY = "AIzaSyAV32pSAQ0TW7WCS73uBXZQTN1mNRtR3Xg" # আপনার এপিআই কি এখানে দিন
+API_KEY = "AIzaSyAV32pSAQ0TW7WCS73uBXZQTN1mNRtR3Xg"
+# আপনার এপিআই কি এখানে দিন
 genai.configure(api_key=API_KEY)
 
 # সঠিক মডেল ব্যবহার করুন
