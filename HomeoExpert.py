@@ -7,7 +7,7 @@ import google.generativeai as genai
 API_KEY = "AIzaSyCiHlaNSDV88cTVEVNWDebtf92f74mNQbo" 
 genai.configure(api_key=API_KEY)
 model = genai.GenerativeModel('gemini-1.5-flash-latest')
-
+import os
 st.set_page_config(page_title="Shanta Homeo Expert", layout="wide")
 
 # ২. সেশন স্টেট ম্যানেজমেন্ট (তথ্য ধরে রাখার জন্য)
