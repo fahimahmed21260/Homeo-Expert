@@ -26,6 +26,19 @@ with st.sidebar:
     st.info("Shanta Homeo & Modern Health Care v2.5")
 
 st.title("⚕️ Shanta Homeo & Modern Health Care")
+# ৪. মেনু অনুযায়ী ইন্টারফেস পরিবর্তন (লাইন ৩৯ এর পরে বসান)
+if st.session_state.menu_choice == "পুরানো রোগী":
+    st.header("🔍 পুরানো রোগীর তথ্য খুঁজুন")
+    patient_search = st.text_input("রোগীর আইডি বা নাম দিয়ে সার্চ করুন")
+    if st.button("সার্চ"):
+        st.write("তথ্য খোঁজা হচ্ছে...")
+    st.stop() # এটি দিলে নিচের নতুন রোগীর অংশটি আর দেখাবে না
+
+elif st.session_state.menu_choice == "রোগীর লিস্ট":
+    st.header("📋 নিবন্ধিত রোগীর তালিকা")
+    # এখানে আপনার ডাটাবেস বা এক্সেল ফাইল থাকলে তা দেখাবে
+    st.info("বর্তমানে কোনো তালিকা সংরক্ষিত নেই।")
+    st.stop()
 
 # ধাপ ১: রেজিস্ট্রেশন ও রিপোর্ট আপলোড
 if st.session_state.step == 1:
