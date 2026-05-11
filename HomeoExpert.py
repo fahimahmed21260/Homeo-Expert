@@ -40,9 +40,9 @@ elif st.session_state.menu_choice == "রোগীর লিস্ট":
 
 else:
     # ধাপ ১: রেজিস্ট্রেশন
-        if st.session_state.step == 1:
-        st.header("👤 নতুন রোগী নিবন্ধন")
-        st.info(f"রোগীর ইউনিক আইডি: **{st.session_state.patient_id}**")
+                   if st.session_state.step == 1:
+                   st.header("👤 নতুন রোগী নিবন্ধন")
+                   st.info(f"রোগীর ইউনিক আইডি: **{st.session_state.patient_id}**")
         
         name = st.text_input("রোগীর নাম")
         age = st.number_input("রোগীর বয়স", min_value=0, max_value=120)
