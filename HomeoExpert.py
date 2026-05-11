@@ -1,6 +1,8 @@
 import streamlit as st
 import google.generativeai as genai
-import random
+
+# লেটেস্ট এপিআই ভার্সন নিশ্চিত করার জন্য
+from google.generativeai import types
 
 # ১. সঠিক এপিআই কনফিগারেশন (এটি কপি করে বসান)
 # নিশ্চিত করুন আপনার API KEY ঠিক আছে
@@ -8,10 +10,14 @@ API_KEY = "AIzaSyCiHlaNSDV88cTVEVNWDebtf92f74mNQbo"
 genai.configure(api_key=API_KEY)
 
 # আগের সব মডেল ডিক্লেয়ারেশন মুছে এটি বসান:
+# এটি সরাসরি লেটেস্ট ফ্ল্যাশ মডেল কল করবে
 model = genai.GenerativeModel(
-    model_name="gemini-1.5-flash",
-    generation_config={"top_p": 0.95, "top_k": 64, "temperature": 1.0}
+    model_name="gemini-1.5-flash"
 )
+
+# এপিআই কি সেটআপ
+API_KEY = "AIzaSyCiHlaNSDV88cTVEVNWDebtf92f74mNQbo"
+genai.configure(api_key=API_KEY)
 # ২. সেশন স্টেট ম্যানেজমেন্ট
 if 'step' not in st.session_state:
     st.session_state.step = 1
