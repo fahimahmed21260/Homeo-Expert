@@ -1,26 +1,22 @@
 import streamlit as st
-import random
 import google.generativeai as genai
+import random
 
-# ১. কনফিগারেশন এবং এপিআই সেটআপ (আপনার API Key এখানে দিন)
-# নিরাপদ থাকার জন্য Streamlit Secrets ব্যবহার করা ভালো
+# ১. সঠিক এপিআই কনফিগারেশন (এটি কপি করে বসান)
+# নিশ্চিত করুন আপনার API KEY ঠিক আছে
 API_KEY = "AIzaSyCiHlaNSDV88cTVEVNWDebtf92f74mNQbo" 
 genai.configure(api_key=API_KEY)
-model = genai.GenerativeModel('models/gemini-1.5-flash')
-import os
-st.set_page_config(page_title="Shanta Homeo Expert", layout="wide")
 
-# ২. সেশন স্টেট ম্যানেজমেন্ট (তথ্য ধরে রাখার জন্য)
+# মডেল ডিক্লেয়ারেশন (সর্বশেষ স্টেবল ভার্সন)
+model = genai.GenerativeModel('gemini-1.5-flash')
+
+# ২. সেশন স্টেট ম্যানেজমেন্ট
 if 'step' not in st.session_state:
     st.session_state.step = 1
 if 'patient_count' not in st.session_state:
     st.session_state.patient_count = 1
-
 if 'patient_id' not in st.session_state:
     st.session_state.patient_id = f"SHM-{st.session_state.patient_count:02d}"
-if 'chat_history' not in st.session_state:
-    st.session_state.chat_history = []
-
 # ৩. সাইডবার ডিজাইন
 with st.sidebar:
     st.title("মেনু নির্বাচন করুন")
