@@ -36,6 +36,28 @@ if st.session_state.menu_choice == "পুরানো রোগী":
     if st.button("সার্চ"):
         st.write("তথ্য খোঁজা হচ্ছে...")
     st.stop() # এটি দিলে নিচের নতুন রোগীর অংশটি আর দেখাবে না
+    # হোমপেজ কার্ড ইন্টারফেস (লাইন ৩৯ এর ঠিক নিচে বসান)
+st.write("### স্বাগতম, ডাক্তার সাহেব।")
+st.write("আজকের কাজ শুরু করতে একটি অপশন বেছে নিন:")
+
+col1, col2, col3 = st.columns(3)
+
+with col1:
+    if st.button("➕ \n\n নতুন রোগী \n\n প্রথমবারের মতো আসা রোগীর জন্য"):
+        st.session_state.menu_choice = "নতুন রোগী"
+        st.rerun()
+
+with col2:
+    if st.button("🔄 \n\n ফলো-আপ রোগী \n\n পুরানো রোগীর ইতিহাস চেক করতে"):
+        st.session_state.menu_choice = "পুরানো রোগী"
+        st.rerun()
+
+with col3:
+    if st.button("👥 \n\n রোগীর তালিকা \n\n সকল রোগীর ডাটাবেস"):
+        st.session_state.menu_choice = "রোগীর লিস্ট"
+        st.rerun()
+
+st.write("---")
 
 elif st.session_state.menu_choice == "রোগীর লিস্ট":
     st.header("📋 নিবন্ধিত রোগীর তালিকা")
