@@ -91,7 +91,7 @@ elif st.session_state.step == 3:
     if st.button("প্রেসক্রিপশন জেনারেট করুন"):
         final_prompt = f"রোগীর নাম: {st.session_state.patient_name}, বয়স: {st.session_state.patient_age}, প্রধান সমস্যা: {st.session_state.chief_complaint}, অতিরিক্ত লক্ষণ: {user_input}। এই তথ্যের ভিত্তিতে একটি সম্ভাব্য হোমিওপ্যাথিক ঔষধের পরামর্শ এবং নির্দেশিকা দাও।"
         
-        response = model.generate_content(final_prompt)
+        response = model.generate_content(prompt)
         st.subheader("💊 সম্ভাব্য পরামর্শ:")
         st.write(response.text)
         
