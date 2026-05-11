@@ -6,7 +6,7 @@ import google.generativeai as genai
 # নিরাপদ থাকার জন্য Streamlit Secrets ব্যবহার করা ভালো
 API_KEY = "AIzaSyCiHlaNSDV88cTVEVNWDebtf92f74mNQbo" 
 genai.configure(api_key=API_KEY)
-model = genai.GenerativeModel('gemini-pro')
+model = genai.GenerativeModel('gemini-1.5-flash')
 
 st.set_page_config(page_title="Shanta Homeo Expert", layout="wide")
 
