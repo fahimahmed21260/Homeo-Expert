@@ -33,40 +33,41 @@ with st.sidebar:
     st.info("Shanta Homeo & Modern Health Care v2.5")
 
 st.title("⚕️ Shanta Homeo & Modern Health Care")
-# ৪. মেনু অনুযায়ী ইন্টারফেস পরিবর্তন (সঠিক ইন্ডেন্টেশন সহ)
+# ৪. মেনু অনুযায়ী ইন্টারফেস পরিবর্তন (এটি কপি করে বসান)
 if st.session_state.menu_choice == "পুরানো রোগী":
     st.header("🔍 পুরানো রোগীর তথ্য খুঁজুন")
     patient_search = st.text_input("রোগীর আইডি বা নাম দিয়ে সার্চ করুন")
     if st.button("সার্চ"):
         st.write("তথ্য খোঁজা হচ্ছে...")
-    st.stop() 
+    # এখানে st.stop() দেওয়ার প্রয়োজন নেই যদি আপনি চান নিচে অন্য কিছু দেখাক
 
 elif st.session_state.menu_choice == "রোগীর লিস্ট":
     st.header("📋 নিবন্ধিত রোগীর তালিকা")
     st.info("বর্তমানে কোনো তালিকা সংরক্ষিত নেই।")
-    st.stop()
 
-# ধাপ ১: রেজিস্ট্রেশন ও রিপোর্ট আপলোড
-if st.session_state.step == 1:
-    st.header("👤 নতুন রোগী নিবন্ধন")
-    st.info(f"রোগীর ইউনিক আইডি: **{st.session_state.patient_id}**")
-    
-    col1, col2 = st.columns(2)
-    with col1:
-        name = st.text_input("রোগীর নাম")
-    with col2:
-        age = st.number_input("রোগীর বয়স", min_value=0, max_value=120)
-    
-    uploaded_file = st.file_uploader("মেডিকেল রিপোর্ট আপলোড করুন (ঐচ্ছিক)", type=['pdf', 'jpg', 'png', 'jpeg'])
-    
-    if st.button("পরবর্তী ধাপে যান ➡️"):
-        if name:
-            st.session_state.patient_name = name
-            st.session_state.patient_age = age
-            st.session_state.step = 2
-            st.rerun()
-        else:
-            st.error("দয়া করে নাম লিখুন।")
+else:
+    # ডিফল্টভাবে "নতুন রোগী" বা অন্য কোনো অপশন থাকলে এটি দেখাবে
+    # ধাপ ১: রেজিস্ট্রেশন ও রিপোর্ট আপলোড
+    if st.session_state.step == 1:
+        st.header("👤 নতুন রোগী নিবন্ধন")
+        st.info(f"রোগীর ইউনিক আইডি: **{st.session_state.patient_id}**")
+        
+        coll, col2 = st.columns(2)
+        with coll:
+            name = st.text_input("রোগীর নাম")
+        with col2:
+            age = st.number_input("রোগীর বয়স", min_value=0, max_value=120)
+            
+        uploaded_file = st.file_uploader("মেডিকেল রিপোর্ট আপলোড করুন (ঐচ্ছিক)", type=['pdf', 'jpg', 'png'])
+        
+        if st.button("পরবর্তী ধাপে যান ➡️"):
+            if name:
+                st.session_state.patient_name = name
+                st.session_state.patient_age = age
+                st.session_state.step = 2
+                st.rerun()
+            else:
+                st.error("দয়া করে নাম লিখুন।")
 
 # ধাপ ২: প্রধান সমস্যা সংগ্রহ ও AI বিশ্লেষণ
 elif st.session_state.step == 2:
