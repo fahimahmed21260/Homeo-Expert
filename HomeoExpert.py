@@ -8,7 +8,7 @@ except:
     API_KEY = "AIzaSyAV32pSAQ0TW7WCS73uBXZQTN1mNRtR3Xg" # ব্যাকআপ হিসেবে আপনার কি
 
 genai.configure(api_key=API_KEY)
-model = genai.GenerativeModel('gemini-1.5-flash')
+model = genai.GenerativeModel('gemini-1.0-pro')
 
 st.title("🩺 Shanta Homeo Expert")
 
