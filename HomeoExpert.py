@@ -1,37 +1,33 @@
 import streamlit as st
-import google.generativeai as genai
+from openai import OpenAI
 
-# Secrets থেকে API Key নেওয়া (সহজ উপায়)
-try:
-    API_KEY = st.secrets["GEMINI_API_KEY"]
-except:
-    API_KEY = "AIzaSyAV32pSAQ0TW7WCS73uBXZQTN1mNRtR3Xg" # ব্যাকআপ হিসেবে আপনার কি
+# ১. এপিআই কি সেটআপ
+client = OpenAI(api_key="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")
 
-genai.configure(api_key=API_KEY)
-model = genai.GenerativeModel('gemini-1.0-pro')
+st.title("🩺 Shanta Homeo AI Assistant")
+st.write("রোগীর লক্ষণগুলো নিচে লিখুন:")
 
-st.title("🩺 Shanta Homeo Expert")
+# ২. ইনপুট সেকশন
+user_input = st.text_area("লক্ষণ (Symptoms):", placeholder="যেমন: রাতে বেশি কাশি, পানি পিপাসা কম...")
 
-# সেশন স্টেট সেটআপ
-if 'step' not in st.session_state:
-    st.session_state.step = 1
-
-# ধাপ ১: রোগীর নাম
-if st.session_state.step == 1:
-    name = st.text_input("রোগীর নাম লিখুন")
-    if st.button("পরবর্তী ধাপ") and name:
-        st.session_state.p_name = name
-        st.session_state.step = 2
-        st.rerun()
-
-# ধাপ ২: লক্ষণ ও বিশ্লেষণ
-elif st.session_state.step == 2:
-    st.subheader(f"রোগী: {st.session_state.p_name}")
-    problem = st.text_area("লক্ষণগুলো বিস্তারিত লিখুন")
-    
-    if st.button("বিশ্লেষণ করুন"):
+# ৩. এআই প্রম্পট ইঞ্জিনিয়ারিং
+if st.button("বিশ্লেষণ করুন"):
+    if user_input:
         try:
-            response = model.generate_content(f"Homeopathic analysis for: {problem}")
-            st.write(response.text)
+            # এখানে সিস্টেম মেসেজে আপনি বটকে 'হোমিওপ্যাথিক বিশেষজ্ঞ' হিসেবে সেট করছেন
+            response = client.chat.completions.create(
+                model="gpt-3.5-turbo", # অথবা gpt-4
+                messages=[
+                    {"role": "system", "content": "তুমি একজন অভিজ্ঞ হোমিওপ্যাথিক ডাক্তার। রোগীর লক্ষণ অনুযায়ী সঠিক রেমেডি এবং পরামর্শ দাও।"},
+                    {"role": "user", "content": user_input}
+                ]
+            )
+            
+            # ফলাফল প্রদর্শন
+            st.success("এআই বিশ্লেষণ:")
+            st.write(response.choices[0].message.content)
+            
         except Exception as e:
-            st.error(f"এপিআই এরর। কি-টি ঠিক আছে তো? {e}")
+            st.error(f"Error: {e}")
+    else:
+        st.warning("দয়া করে কিছু লক্ষণ লিখুন।")
