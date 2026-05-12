@@ -2,7 +2,7 @@ import streamlit as st
 from openai import OpenAI
 
 # ১. এপিআই কি সেটআপ
-client = OpenAI(api_key="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")
+client = OpenAI(api_key=st.secrets["OPENAI_API_KEY"])
 
 st.title("🩺 Shanta Homeo AI Assistant")
 st.write("রোগীর লক্ষণগুলো নিচে লিখুন:")
